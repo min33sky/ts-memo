@@ -5,12 +5,11 @@ import {
   Route,
   withRouter,
 } from 'react-router-dom';
-import TrashMemoViewer from '../../page/RemovePage/TrashMemoViewer';
-
+import RemoveMemoViewer from '../../page/RemovePage/RemoveMemoViewer';
 function TrashRouter({ match }: RouteComponentProps) {
   return (
     <Switch>
-      <Route exact path={`${match.url}/:id`} component={TrashMemoViewer} />
+      <Route exact path={`${match.url}/:id`} component={RemoveMemoViewer} />
       <Route
         exact
         path={`${match.url}`}

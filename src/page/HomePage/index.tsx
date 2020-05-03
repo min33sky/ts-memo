@@ -21,7 +21,7 @@ function HomePage() {
             <Link to='/memo'>메모</Link>
           </ListItem>
           <ListItem>
-            <Link to='/trash'>휴지통</Link>
+            <Link to='/remove'>휴지통</Link>
           </ListItem>
         </List>
       </Sidebar>

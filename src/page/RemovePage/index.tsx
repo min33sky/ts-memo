@@ -8,15 +8,15 @@ import Main from '../../components/Main';
 import { Memo } from '../../model';
 import { fetchDeletedMemoList } from '../../api';
 import { List, ListItem } from '../../components/List';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import TrashRouter from '../../routes/Remove';
 
-function RemovePage() {
+function RemovePage({ match }: RouteComponentProps) {
   const [memos, setMemos] = useState<Memo[]>([]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [match]);
 
   const fetchData = () => {
     const data = fetchDeletedMemoList();
@@ -31,7 +31,7 @@ function RemovePage() {
     <List>
       {memos.map((memo, idx) => (
         <ListItem key={idx} first={idx === 0}>
-          <Link to={`/trash/${memo.id}`}>{memoTitle(memo.content)}</Link>
+          <Link to={`/remove/${memo.id}`}>{memoTitle(memo.content)}</Link>
         </ListItem>
       ))}
     </List>

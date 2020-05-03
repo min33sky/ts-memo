@@ -10,7 +10,7 @@ function Root() {
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path='/memo' component={MemoPage} />
-        <Route path='/trash' component={RemovePage} />
+        <Route path='/remove' component={RemovePage} />
         <Redirect path='*' to='/' />
       </Switch>
     </BrowserRouter>
