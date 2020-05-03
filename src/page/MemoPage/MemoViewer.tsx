@@ -49,7 +49,9 @@ function MemoViewer({ match }: RouteComponentProps<MemoMatchProps>) {
 
   return (
     <>
-      <Button onClick={onDelete}>삭제</Button>
+      <Button primary onClick={onDelete}>
+        삭제
+      </Button>
       <Div>
         <DateDiv>
           {memo?.createdAt && <DateString timestamp={memo.createdAt} />}

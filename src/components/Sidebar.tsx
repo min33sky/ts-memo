@@ -7,6 +7,7 @@ const Aside = styled.aside`
   border: 1px solid #ccc;
   margin-right: 10px;
   border-radius: 4px;
+  overflow-y: auto;
 `;
 
 const LinkBtn = styled(Link)`
@@ -25,7 +26,7 @@ function Sidebar({ children }: SidebarProps) {
 }
 
 function SidebarTitle({ children }: SidebarProps) {
-  return <h1 style={{ padding: '0 10px' }}>{children}</h1>;
+  return <h1 style={{ padding: '0 10px', textAlign: 'center' }}>{children}</h1>;
 }
 
 interface SidebarBackButtonProps {

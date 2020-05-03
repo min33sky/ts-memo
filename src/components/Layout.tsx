@@ -7,6 +7,7 @@ const Div = styled.div`
   width: 100%;
   height: 800px;
   margin: 10px;
+  background: white;
 `;
 
 interface LayoutProps {

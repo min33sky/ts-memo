@@ -11,12 +11,12 @@ import { List, ListItem } from '../../components/List';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import TrashRouter from '../../routes/Remove';
 
-function RemovePage({ match }: RouteComponentProps) {
+function RemovePage({ location }: RouteComponentProps) {
   const [memos, setMemos] = useState<Memo[]>([]);
 
   useEffect(() => {
     fetchData();
-  }, [match]);
+  }, [location.pathname]);
 
   const fetchData = () => {
     const data = fetchDeletedMemoList();
