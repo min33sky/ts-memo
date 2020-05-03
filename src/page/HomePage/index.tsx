@@ -4,6 +4,12 @@ import Sidebar, { SidebarTitle } from '../../components/Sidebar';
 import { List, ListItem } from '../../components/List';
 import { Link } from 'react-router-dom';
 import Main from '../../components/Main';
+import AddMemoButton from '../../components/AddMemoButton';
+import styled from 'styled-components';
+
+export const Div = styled.div`
+  margin: 10px;
+`;
 
 function HomePage() {
   return (
@@ -20,7 +26,7 @@ function HomePage() {
         </List>
       </Sidebar>
       <Main>
-        <Link to='memo/add'>새로운 메모</Link>
+        <AddMemoButton />
       </Main>
     </Layout>
   );

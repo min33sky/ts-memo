@@ -5,6 +5,7 @@ const MainLayout = styled.main`
   flex: 1 1 auto;
   overflow: auto;
   border: 1px solid #ccc;
+  padding: 10px;
   border-radius: 4px;
 `;
 

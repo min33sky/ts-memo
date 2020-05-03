@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import DateString from '../../components/DateString';
 import Button from '../../components/Button';
 import { Memo } from '../../model';
-import { fetchMemo } from '../../api';
-import { RouteComponentProps } from 'react-router-dom';
+import { fetchMemo, deleteMemo } from '../../api';
+import { RouteComponentProps, Redirect } from 'react-router-dom';
 
 const Div = styled.div`
   border-top: 1px solid #ddd;
@@ -22,7 +22,7 @@ interface MemoMatchProps {
 
 function MemoViewer({ match }: RouteComponentProps<MemoMatchProps>) {
   const [memo, setMemo] = useState<Memo | null>(null);
-  // const [deleted, setDeleted] = useState(false);
+  const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
     fetchData(match.params.id);
@@ -37,9 +37,19 @@ function MemoViewer({ match }: RouteComponentProps<MemoMatchProps>) {
     }
   };
 
+  const onDelete = () => {
+    const memoId = parseInt(match.params.id || '0', 10);
+    deleteMemo(memoId);
+    setDeleted(true);
+  };
+
+  if (deleted) {
+    return <Redirect to='/memo' />;
+  }
+
   return (
     <>
-      <Button>삭제</Button>
+      <Button onClick={onDelete}>삭제</Button>
       <Div>
         <DateDiv>
           {memo?.createdAt && <DateString timestamp={memo.createdAt} />}
