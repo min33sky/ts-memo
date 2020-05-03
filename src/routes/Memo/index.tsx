@@ -6,11 +6,12 @@ import {
   withRouter,
 } from 'react-router-dom';
 import MemoViewer from '../../page/MemoPage/MemoViewer';
+import AddMemo from '../../page/MemoPage/AddMemo';
 
 function MemoRouter({ match }: RouteComponentProps) {
   return (
     <Switch>
-      {/* <Route exact path={`${match.url}/add`} component={AddMemo} /> */}
+      <Route exact path={`${match.url}/add`} component={AddMemo} />
       <Route exact path={`${match.url}/:id`} component={MemoViewer} />
       <Route
         exact

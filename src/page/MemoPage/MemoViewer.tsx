@@ -22,7 +22,7 @@ interface MemoMatchProps {
 
 function MemoViewer({ match }: RouteComponentProps<MemoMatchProps>) {
   const [memo, setMemo] = useState<Memo | null>(null);
-  const [deleted, setDeleted] = useState(false);
+  // const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
     fetchData(match.params.id);

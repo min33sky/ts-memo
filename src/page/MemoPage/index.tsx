@@ -22,7 +22,7 @@ function MemoPage({ match }: RouteComponentProps) {
   useEffect(() => {
     // 메모 목록 가져오기
     fetchData();
-  }, []);
+  }, [match]);
 
   const fetchData = () => {
     const memos = fetchMemoList();
