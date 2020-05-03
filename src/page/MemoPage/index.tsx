@@ -8,6 +8,7 @@ import Sidebar, {
   SidebarTitle,
 } from '../../components/Sidebar';
 import Main from '../../components/Main';
+import MemoRouter from '../../routes/Memo';
 
 interface Memo {
   id?: number;
@@ -48,7 +49,9 @@ function MemoPage({ match }: RouteComponentProps) {
         <SidebarTitle>메모</SidebarTitle>
         {memos && renderMemoList(memos)}
       </Sidebar>
-      <Main>{/* <MemoRouter /> */}</Main>
+      <Main>
+        <MemoRouter />
+      </Main>
     </Layout>
   );
 }
