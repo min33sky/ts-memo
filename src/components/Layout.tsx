@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   display: flex;
-  flex: 1 1 auto;
-  width: 100%;
-  height: 800px;
-  margin: 10px;
+  flex: 1;
+  width: auto;
+  height: 850px;
+  margin: 20px 40px;
   background: white;
 `;
 

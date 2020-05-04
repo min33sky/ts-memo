@@ -8,7 +8,16 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   body {
     background: snow;
+    margin: 0 auto;
+
   }
+
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
 `;
 
 function Root() {

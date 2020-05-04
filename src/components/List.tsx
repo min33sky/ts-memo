@@ -18,6 +18,7 @@ const Li = styled.li<LiProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.5s all;
 
   &:nth-child(odd) {
     background: ghostwhite;
