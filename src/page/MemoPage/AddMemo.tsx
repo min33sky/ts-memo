@@ -46,7 +46,7 @@ function AddMemo() {
           value={value}
         />
         <Button to='/memo'>취소</Button>
-        <Button>저장</Button>
+        <Button primary>저장</Button>
       </form>
     </>
   );

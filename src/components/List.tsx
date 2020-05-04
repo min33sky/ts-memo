@@ -11,8 +11,8 @@ interface LiProps {
 }
 
 const Li = styled.li<LiProps>`
-  padding: 10px 10px;
-  /* height: 2em; */
+  padding: 5px 10px;
+  height: 2em;
   border-bottom: 1px solid #ddd;
   border-top: ${(props) => (props.first ? '1px solid #ddd' : 'none')};
   display: flex;

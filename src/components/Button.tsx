@@ -9,7 +9,7 @@ interface ButtonProps {
 }
 
 // MixIn
-const StylesButton = css<ButtonProps>`
+const BtnStyle = css<ButtonProps>`
   all: unset;
   display: inline-block;
   border: solid 1px #ccc;
@@ -24,12 +24,14 @@ const StylesButton = css<ButtonProps>`
   cursor: pointer;
 `;
 
-const NormalButton = styled.button<ButtonProps>`
-  ${StylesButton}
+const StyledButton = styled.button<ButtonProps>`
+  ${BtnStyle}
 `;
 
 const LinkButton = styled(Link)<ButtonProps>`
-  ${StylesButton}
+  &.primary {
+    color: white;
+  }
 `;
 
 export const SideMemuButton = styled(Link)`
@@ -43,9 +45,9 @@ const Button: React.FC<ButtonProps> = (props) => {
 
   const renderButton = () => {
     return (
-      <NormalButton primary={primary} onClick={onClick}>
+      <StyledButton primary={primary} onClick={onClick}>
         {children}
-      </NormalButton>
+      </StyledButton>
     );
   };
 
@@ -55,9 +57,11 @@ const Button: React.FC<ButtonProps> = (props) => {
     }
 
     return (
-      <LinkButton primary={primary} to={to}>
-        {children}
-      </LinkButton>
+      <StyledButton primary={primary}>
+        <LinkButton className={primary ? 'primary' : ''} to={to}>
+          {children}
+        </LinkButton>
+      </StyledButton>
     );
   };
 

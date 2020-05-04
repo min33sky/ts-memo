@@ -3,14 +3,14 @@ import { fetchDeletedMemoList } from '../../api';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
-const RemoveMainContainer = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 820px;
 `;
 
-const RemoveMainDiv = styled.div`
+const Div = styled.div`
   font-size: 3rem;
 `;
 
@@ -27,13 +27,13 @@ function RemoveMain({ location }: RouteComponentProps) {
   };
 
   return (
-    <RemoveMainContainer>
+    <Container>
       {removedDataLength ? (
-        <RemoveMainDiv>{removedDataLength}개의 쓰래기들....</RemoveMainDiv>
+        <Div>{removedDataLength}개의 쓰래기들....</Div>
       ) : (
-        <RemoveMainDiv>비어있어요</RemoveMainDiv>
+        <Div>비어있어요</Div>
       )}
-    </RemoveMainContainer>
+    </Container>
   );
 }
 
