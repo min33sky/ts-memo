@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../components/Button';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
 import { Memo } from '../../model';
-import { addMemo } from '../../api';
 
 const TextArea = styled.textarea`
   width: 97%;
@@ -12,9 +10,12 @@ const TextArea = styled.textarea`
   border: 1px solid #ccc;
 `;
 
-function AddMemo() {
+interface AddMemoProps {
+  onSubmit(memo: Memo): void;
+}
+
+function AddMemo({ onSubmit }: AddMemoProps) {
   const [value, setValue] = useState('');
-  const [saved, setSaved] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,19 +24,12 @@ function AddMemo() {
       alert('내용을 입력하세요');
       return;
     }
-    saveMemo({ content });
-    setSaved(true);
+    onSubmit({ content });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
-
-  const saveMemo = (memo: Memo) => addMemo(memo);
-
-  if (saved) {
-    return <Redirect to='/memo' />;
-  }
 
   return (
     <>
