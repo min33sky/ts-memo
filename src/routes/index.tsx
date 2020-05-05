@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import HomePage from '../page/HomePage';
 import RemovePage from '../page/RemovePage';
 import { createGlobalStyle } from 'styled-components';
 import MemoListContainer from '../containers/MemoListContainer';
+import HomeContainer from '../containers/HomeContainer';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -25,7 +25,7 @@ function Root() {
     <BrowserRouter>
       <GlobalStyle />
       <Switch>
-        <Route exact path='/' component={HomePage} />
+        <Route exact path='/' component={HomeContainer} />
         <Route path='/memo' component={MemoListContainer} />
         <Route path='/remove' component={RemovePage} />
         <Redirect path='*' to='/' />

@@ -11,17 +11,24 @@ export const Div = styled.div`
   margin: 10px;
 `;
 
-function HomePage() {
+interface HomePageProps {
+  memoNumber: number;
+  deletedMemoNumber: number;
+}
+
+function HomePage({ memoNumber, deletedMemoNumber }: HomePageProps) {
   return (
     <Layout>
       <Sidebar>
         <SidebarTitle>폴더</SidebarTitle>
         <List>
           <ListItem first>
-            <SideMemuButton to='/memo'>메모</SideMemuButton>
+            <SideMemuButton to='/memo'>메모({memoNumber})</SideMemuButton>
           </ListItem>
           <ListItem>
-            <SideMemuButton to='/remove'>휴지통</SideMemuButton>
+            <SideMemuButton to='/remove'>
+              휴지통({deletedMemoNumber})
+            </SideMemuButton>
           </ListItem>
         </List>
       </Sidebar>
