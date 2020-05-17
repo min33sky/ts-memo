@@ -5,14 +5,14 @@ import {
   Route,
   withRouter,
 } from 'react-router-dom';
-import MemoViewer from '../../page/MemoPage/MemoViewer';
 import AddMemoContainer from '../../containers/AddMemoContainer';
+import MemoContainer from '../../containers/MemoContainer';
 
 function MemoRouter({ match }: RouteComponentProps) {
   return (
     <Switch>
       <Route exact path={`${match.url}/add`} component={AddMemoContainer} />
-      <Route exact path={`${match.url}/:id`} component={MemoViewer} />
+      <Route exact path={`${match.url}/:id`} component={MemoContainer} />
       <Route
         exact
         path={`${match.url}`}

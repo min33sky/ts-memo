@@ -24,6 +24,7 @@ function MemoListPage({ memos }: MemoListPageProps) {
         {memos.length > 0 && <MemoList memos={memos} />}
       </Sidebar>
       <Main>
+
         <AddMemoButton />
         <MemoRouter />
       </Main>

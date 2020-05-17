@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import DateString from '../../components/DateString';
 import Button from '../../components/Button';
 import { Memo } from '../../model';
-import { fetchMemo, deleteMemo } from '../../api';
-import { RouteComponentProps, Redirect } from 'react-router-dom';
 
 const Div = styled.div`
   border-top: 1px solid #ddd;
@@ -16,40 +14,18 @@ const DateDiv = styled.div`
   margin-bottom: 15px;
 `;
 
-interface MemoMatchProps {
-  id: string;
+interface MemoViewerProps {
+  memo: Memo;
+  onDeleteMemo: (id: number) => void;
 }
-
-function MemoViewer({ match }: RouteComponentProps<MemoMatchProps>) {
-  const [memo, setMemo] = useState<Memo | null>(null);
-  const [deleted, setDeleted] = useState(false);
-
-  useEffect(() => {
-    fetchData(match.params.id);
-  }, [match]);
-
-  const fetchData = (id: string) => {
-    const memoId = parseInt(id || '0', 10);
-    const memo = fetchMemo(memoId);
-
-    if (memo) {
-      setMemo(memo);
-    }
-  };
-
-  const onDelete = () => {
-    const memoId = parseInt(match.params.id || '0', 10);
-    deleteMemo(memoId);
-    setDeleted(true);
-  };
-
-  if (deleted) {
-    return <Redirect to='/memo' />;
-  }
-
+/**
+ * 메모 내용을 보여주는 페이지
+ * @param param0
+ */
+function MemoViewer({ memo, onDeleteMemo }: MemoViewerProps) {
   return (
     <>
-      <Button onClick={onDelete}>삭제</Button>
+      <Button onClick={() => onDeleteMemo(memo.id!)}>삭제</Button>
       <Div>
         <DateDiv>
           {memo?.createdAt && <DateString timestamp={memo.createdAt} />}
