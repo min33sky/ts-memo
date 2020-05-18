@@ -5,6 +5,7 @@ import { RootState } from '../reducers';
 import { Memo } from '../model';
 import MemoViewer from '../page/MemoPage/MemoViewer';
 import { deleteMemo } from '../reducers/memo';
+import * as api from '../api';
 
 interface MatchProps {
   id: string;
@@ -27,8 +28,9 @@ function MemoContainer({ match }: RouteComponentProps<MatchProps>) {
 
   const onDeleteMemo = useCallback(
     (id: number) => {
-      dispatch(deleteMemo(id));
-      setIsDeleted(true);
+      dispatch(deleteMemo(id)); // 스토어 업데이트
+      api.deleteMemo(id); // DB 업데이트
+      setIsDeleted(true); // 리다이렉트
     },
     [dispatch],
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Layout from '../../components/Layout';
 import Sidebar, {
   SidebarBackButton,
@@ -6,23 +6,15 @@ import Sidebar, {
 } from '../../components/Sidebar';
 import Main from '../../components/Main';
 import { Memo } from '../../model';
-import { fetchDeletedMemoList } from '../../api';
 import { List, ListItem } from '../../components/List';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TrashRouter from '../../routes/Remove';
 
-function RemovePage({ location }: RouteComponentProps) {
-  const [memos, setMemos] = useState<Memo[]>([]);
+interface RemovePageProps {
+  memos: Memo[];
+}
 
-  useEffect(() => {
-    fetchData();
-  }, [location.pathname]);
-
-  const fetchData = () => {
-    const data = fetchDeletedMemoList();
-    setMemos(data);
-  };
-
+function RemovePage({ memos }: RemovePageProps) {
   const memoTitle = (content: string) => {
     return content.substr(0, 15);
   };
