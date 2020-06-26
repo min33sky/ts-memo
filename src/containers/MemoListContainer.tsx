@@ -5,14 +5,15 @@ import * as api from '../api';
 import { fetchMemoList } from '../reducers/memo';
 import MemoListPage from '../page/MemoPage/MemoListPage';
 
+/**
+ * 메모 리스트 컨테이너
+ */
 function MemoListContainer() {
   const { memos } = useSelector((state: RootState) => state.memo);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // DB에 저장된 메모를 가져온다.
     const memos = api.fetchMemoList();
-    // 스토어에 메모를 저장한다.
     dispatch(fetchMemoList(memos));
   }, [dispatch]);
 

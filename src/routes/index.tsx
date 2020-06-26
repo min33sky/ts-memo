@@ -5,13 +5,15 @@ import MemoListContainer from '../containers/MemoListContainer';
 import HomeContainer from '../containers/HomeContainer';
 import RemovedMemoListContainer from '../containers/RemovedMemoListContainer';
 
+/**
+ * Styled-Components에서 제공하는 글로벌 CSS 설정
+ */
 const GlobalStyle = createGlobalStyle`
+
   body {
     background: snow;
     margin: 0 auto;
-
   }
-
 
   a {
     text-decoration: none;

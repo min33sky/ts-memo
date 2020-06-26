@@ -10,7 +10,10 @@ interface LiProps {
   first?: boolean;
 }
 
-const Li = styled.li<LiProps>`
+/*
+  ? styled-components에서 HTML ELEMENT에 props를 추가해서 스타일링 하기
+ */
+const ListItemWrapper = styled.li<LiProps>`
   padding: 5px 10px;
   height: 2em;
   border-bottom: 1px solid #ddd;
@@ -21,19 +24,19 @@ const Li = styled.li<LiProps>`
   transition: 0.5s all;
 
   &:nth-child(odd) {
-    background: ghostwhite;
+    background-color: ghostwhite;
   }
 
   &:hover {
-    background: turquoise;
+    background-color: turquoise;
   }
 `;
 
-interface ListProps {
-  children: React.ReactNode;
-}
-
-function List({ children }: ListProps) {
+/**
+ * 메모 리스트 컴포넌트
+ * @param children 메모 목록
+ */
+function List({ children }: { children: React.ReactNode }) {
   return <Ul>{children}</Ul>;
 }
 
@@ -42,8 +45,13 @@ interface ListItemProps {
   first?: boolean;
 }
 
+/**
+ * 메모 리스트에서 사용되는 메모 제목을 보여주는 컴포넌트
+ * @param children 제목
+ * @param first 첫 번째 메모
+ */
 function ListItem({ children, first }: ListItemProps) {
-  return <Li first={first}>{children}</Li>;
+  return <ListItemWrapper first={first}>{children}</ListItemWrapper>;
 }
 
 export { List, ListItem };

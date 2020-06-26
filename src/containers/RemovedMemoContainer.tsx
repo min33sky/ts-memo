@@ -35,7 +35,7 @@ function RemovedMemoContainer({ match }: RouteComponentProps<RouteProps>) {
 
   const onRestore = useCallback(
     (id: number) => {
-      api.resotreMemo(memoId.current);
+      api.restoreMemo(memoId.current);
       dispatch(restoreMemo(memoId.current));
       setRestored(true);
     },

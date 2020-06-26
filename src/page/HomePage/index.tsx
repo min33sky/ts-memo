@@ -16,6 +16,11 @@ interface HomePageProps {
   deletedMemoNumber: number;
 }
 
+/**
+ * 시작 페이지
+ * @param memoNumber 메모 수
+ * @param deletedMemoNumber 삭제된 메모 수
+ */
 function HomePage({ memoNumber, deletedMemoNumber }: HomePageProps) {
   return (
     <Layout>
