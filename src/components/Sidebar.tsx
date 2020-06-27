@@ -8,6 +8,7 @@ const Aside = styled.aside`
   border: 1px solid #ccc;
   margin-right: 10px;
   border-radius: 4px;
+  background-color: ivory;
   overflow-y: auto;
 `;
 

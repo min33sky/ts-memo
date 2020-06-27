@@ -9,7 +9,7 @@ import Sidebar, {
 } from '../../components/Sidebar';
 import Main from '../../components/Main';
 import MemoRouter from '../../routes/Memo';
-import { SideMemuButton } from '../../components/Button';
+import { ListItemButton } from '../../components/Button';
 
 interface Memo {
   id?: number;
@@ -35,9 +35,9 @@ function MemoPage({ location }: RouteComponentProps) {
     <List>
       {memos.map((memo, idx) => (
         <ListItem key={idx} first={idx === 0}>
-          <SideMemuButton to={`/memo/${memo.id}`}>
+          <ListItemButton to={`/memo/${memo.id}`}>
             {memoTitle(memo.content)}
-          </SideMemuButton>
+          </ListItemButton>
         </ListItem>
       ))}
     </List>

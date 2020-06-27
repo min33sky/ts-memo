@@ -51,6 +51,7 @@ export const addMemo = (memo: Memo) => {
 
 /**
  * 메모를 삭제한다.
+ * - 복구를 위해서 flag로 삭제 처리를 한다.
  * @param memoId 메모 아이디
  */
 export const deleteMemo = (memoId: number) => {

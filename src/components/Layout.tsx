@@ -5,9 +5,8 @@ const LayoutWrapper = styled.div`
   display: flex;
   flex: 1;
   width: auto;
-  height: 850px;
+  min-height: 700px;
   margin: 20px 40px;
-  background: white;
 `;
 
 interface LayoutProps {

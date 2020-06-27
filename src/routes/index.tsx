@@ -11,7 +11,7 @@ import RemovedMemoListContainer from '../containers/RemovedMemoListContainer';
 const GlobalStyle = createGlobalStyle`
 
   body {
-    background: snow;
+    background-color: darkslateblue;
     margin: 0 auto;
   }
 
@@ -22,6 +22,9 @@ const GlobalStyle = createGlobalStyle`
 
 `;
 
+/**
+ * 앱의 시작 컴포넌트
+ */
 function Root() {
   return (
     <BrowserRouter>

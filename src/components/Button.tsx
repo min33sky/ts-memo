@@ -9,7 +9,7 @@ interface ButtonProps {
 }
 
 // MixIn
-const BtnStyle = css<ButtonProps>`
+const ButtonStyle = css<ButtonProps>`
   all: unset;
   display: inline-block;
   border: solid 1px #ccc;
@@ -25,7 +25,7 @@ const BtnStyle = css<ButtonProps>`
 `;
 
 const StyledButton = styled.button<ButtonProps>`
-  ${BtnStyle}
+  ${ButtonStyle}
 `;
 
 const LinkButton = styled(Link)<ButtonProps>`
@@ -34,7 +34,12 @@ const LinkButton = styled(Link)<ButtonProps>`
   }
 `;
 
-export const SideMemuButton = styled(Link)`
+/**
+ * 리스트에 들어가는 메뉴 버튼
+ * react-router의 Link 컴포넌트를 내장하고 있다.
+ */
+export const ListItemButton = styled(Link)`
+  /* 링크 클릭 범위를 전체 범위로 넓힌다. */
   display: flex;
   justify-content: center;
   align-items: center;

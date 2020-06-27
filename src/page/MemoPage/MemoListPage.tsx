@@ -8,7 +8,7 @@ import Sidebar, {
 import Main from '../../components/Main';
 import MemoRouter from '../../routes/Memo';
 import { List, ListItem } from '../../components/List';
-import { SideMemuButton } from '../../components/Button';
+import { ListItemButton } from '../../components/Button';
 import AddMemoButton from '../../components/AddMemoButton';
 import { useLocation } from 'react-router-dom';
 
@@ -46,9 +46,9 @@ function MemoList({ memos }: MemoListPageProps) {
           first={idx === 0}
           active={memo.id === currentPageNo}
         >
-          <SideMemuButton to={`/memo/${memo.id}`}>
+          <ListItemButton to={`/memo/${memo.id}`}>
             {memoTitle(memo.content)}
-          </SideMemuButton>
+          </ListItemButton>
         </ListItem>
       ))}
     </List>

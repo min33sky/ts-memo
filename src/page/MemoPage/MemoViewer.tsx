@@ -18,9 +18,11 @@ interface MemoViewerProps {
   memo: Memo;
   onDeleteMemo: (id: number) => void;
 }
+
 /**
- * 메모 내용을 보여주는 페이지
- * @param param0
+ * 메모 내용을 보여주는 컴포넌트
+ * @param param0 메모
+ * @param param0 메모 삭제 함수
  */
 function MemoViewer({ memo, onDeleteMemo }: MemoViewerProps) {
   return (
