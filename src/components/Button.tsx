@@ -22,6 +22,12 @@ const ButtonStyle = css<ButtonProps>`
   background: ${(props) => (props.primary ? '#337ab7' : 'transparent')};
   color: ${(props) => (props.primary ? '#fff' : 'inherit')};
   cursor: pointer;
+  transition: all ease-in 0.2s;
+
+  &:hover {
+    background-color: palevioletred;
+    color: white;
+  }
 `;
 
 const StyledButton = styled.button<ButtonProps>`
@@ -51,6 +57,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   const { to, children, primary, onClick } = props;
   const isLink = !!to;
 
+  // 일반 버튼
   const renderButton = () => {
     return (
       <StyledButton primary={primary} onClick={onClick}>
@@ -59,6 +66,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     );
   };
 
+  // 링크 버튼
   const renderLink = () => {
     if (!to) {
       return <div></div>;

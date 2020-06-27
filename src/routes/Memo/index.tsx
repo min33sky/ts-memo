@@ -16,7 +16,7 @@ function MemoRouter({ match }: RouteComponentProps) {
       <Route
         exact
         path={`${match.url}`}
-        component={() => <div>새로운 메모를 만들어 보세요.</div>}
+        component={() => <div>새로운 메모를 작성하세요 ^_^</div>}
       />
     </Switch>
   );

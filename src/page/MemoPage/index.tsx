@@ -31,6 +31,10 @@ function MemoPage({ location }: RouteComponentProps) {
     setMemos(memos);
   };
 
+  /**
+   * 메모 목록을 출력하는 함수
+   * @param memos 저장된 메모들
+   */
   const renderMemoList = (memos: Memo[]) => (
     <List>
       {memos.map((memo, idx) => (

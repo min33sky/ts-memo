@@ -5,15 +5,27 @@ import { Memo } from '../../model';
 
 const TextArea = styled.textarea`
   width: 97%;
-  height: 100px;
+  height: 200px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  margin-bottom: 10px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 interface AddMemoProps {
   onSubmit(memo: Memo): void;
 }
 
+/**
+ * 새 메모를 작성하는 컴포넌트
+ * @param onSubmit 메모 등록 함수
+ */
 function AddMemo({ onSubmit }: AddMemoProps) {
   const [value, setValue] = useState('');
 
@@ -33,7 +45,7 @@ function AddMemo({ onSubmit }: AddMemoProps) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <TextArea
           placeholder='여기에 메모를 입력하세요'
           onChange={handleChange}
@@ -41,7 +53,7 @@ function AddMemo({ onSubmit }: AddMemoProps) {
         />
         <Button to='/memo'>취소</Button>
         <Button primary>저장</Button>
-      </form>
+      </Form>
     </>
   );
 }
