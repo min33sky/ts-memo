@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DateString from '../../components/DateString';
 import Button from '../../components/Button';
 import { Memo } from '../../model';
+import AddMemoButton from '../../components/AddMemoButton';
 
 const ContentWrapper = styled.div`
   border-top: 1px solid #ddd;
@@ -27,6 +28,7 @@ interface MemoViewerProps {
 function MemoViewer({ memo, onDeleteMemo }: MemoViewerProps) {
   return (
     <>
+      <AddMemoButton />
       <Button onClick={() => onDeleteMemo(memo.id!)}>삭제</Button>
       <ContentWrapper>
         <DateWrapper>

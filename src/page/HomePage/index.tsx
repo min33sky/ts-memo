@@ -3,7 +3,6 @@ import Layout from '../../components/Layout';
 import Sidebar, { SidebarTitle } from '../../components/Sidebar';
 import { List, ListItem } from '../../components/List';
 import Main from '../../components/Main';
-import AddMemoButton from '../../components/AddMemoButton';
 import styled from 'styled-components';
 import { ListItemButton } from '../../components/Button';
 
@@ -40,9 +39,7 @@ function HomePage({ memoNumber, deletedMemoNumber }: HomePageProps) {
           </ListItem>
         </List>
       </Sidebar>
-      <Main>
-        <AddMemoButton />
-      </Main>
+      <Main>Hi?</Main>
     </Layout>
   );
 }

@@ -9,13 +9,13 @@ interface DateStringProps {
  * @param timestamp 글 작성 날짜
  */
 const DateString: React.FC<DateStringProps> = ({ timestamp }) => {
-  if (!timestamp) {
-    return null;
-  }
+  if (!timestamp) return null;
 
-  const date = new Date(timestamp);
-
-  return <span style={{ color: '#aaa' }}>{date.toLocaleString()}</span>;
+  return (
+    <span style={{ color: '#aaa' }}>
+      {new Date(timestamp).toLocaleString()}
+    </span>
+  );
 };
 
 export default DateString;
