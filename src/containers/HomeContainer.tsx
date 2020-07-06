@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import * as api from '../api';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMemoList, fetchDeletedMemoList } from '../reducers/memo';
+import { fetchDeletedMemoList, fetchMemoListRequest } from '../reducers/memo';
 import HomePage from '../page/HomePage';
 import { RootState } from '../reducers';
 
@@ -14,11 +14,10 @@ function HomeContainer() {
 
   useEffect(() => {
     // DB에서 메모들을 가져온다.
-    const memos = api.fetchMemoList();
     const deletedMemos = api.fetchDeletedMemoList();
 
     // 스토어 상태 업데이트
-    dispatch(fetchMemoList(memos));
+    dispatch(fetchMemoListRequest());
     dispatch(fetchDeletedMemoList(deletedMemos));
   }, [dispatch]);
 

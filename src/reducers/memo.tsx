@@ -2,7 +2,9 @@ import { Memo } from '../model';
 
 // ***** Action Type ***** //
 
-export const FETCH_MEMO_LIST = 'memo/FETCH_MEMO_LIST' as const;
+export const FETCH_MEMO_LIST_REQUEST = 'memo/FETCH_MEMO_LIST_REQUEST' as const;
+export const FETCH_MEMO_LIST_SUCCESS = 'memo/FETCH_MEMO_LIST_SUCCESS' as const;
+export const FETCH_MEMO_LIST_FAILURE = 'memo/FETCH_MEMO_LIST_FAILURE' as const;
 export const FETCH_DELETED_MEMO_LIST = 'memo/FETCH_DELETED_MEMO_LIST' as const;
 export const FETCH_MEMO = 'memo/FETCH_MEMO' as const;
 export const FETCH_DELETED_MEMO = 'memo/FETCH_DELETED_MEMO' as const;
@@ -13,11 +15,23 @@ export const RESTORE_MEMO = 'memo/RESTORE_MEMO' as const;
 // ***** Actino Creator ***** //
 
 /**
- * 메모들을 모두 가져오는 액션 생성 함수
+ * 메모 리스트를 요청하는 액션 함수
+ */
+export const fetchMemoListRequest = () => ({
+  type: FETCH_MEMO_LIST_REQUEST,
+});
+
+/**
+ * DB에서 메모들을 모두 가져오는 액션 함수
  * @param memos DB에 저장되어 있는 메모들
  */
-export const fetchMemoList = (memos: Memo[]) => ({
-  type: FETCH_MEMO_LIST,
+export const fetchMemoListSuccess = (memos: Memo[]) => ({
+  type: FETCH_MEMO_LIST_SUCCESS,
+  payload: memos,
+});
+
+export const fetchMemoListFailure = (memos: Memo[]) => ({
+  type: FETCH_MEMO_LIST_FAILURE,
   payload: memos,
 });
 
@@ -54,7 +68,7 @@ export const restoreMemo = (id: number) => ({
 // ***** Action Type ***** //
 
 type MemoAction =
-  | ReturnType<typeof fetchMemoList>
+  | ReturnType<typeof fetchMemoListSuccess>
   | ReturnType<typeof fetchDeletedMemoList>
   | ReturnType<typeof fetchMemo>
   | ReturnType<typeof fetchDeletedMemo>
@@ -78,10 +92,10 @@ const initialState: MemoState = {
 
 function memoReducer(state = initialState, action: MemoAction): MemoState {
   switch (action.type) {
-    case FETCH_MEMO_LIST: {
+    case FETCH_MEMO_LIST_SUCCESS: {
       return {
         ...state,
-        memos: action.payload,
+        memos: action.payload.map((memo) => ({ ...memo })),
       };
     }
 
