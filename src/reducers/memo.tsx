@@ -90,7 +90,10 @@ const initialState: MemoState = {
 
 // ***** Reducer ***** //
 
-function memoReducer(state = initialState, action: MemoAction): MemoState {
+function memoReducer(
+  state: MemoState = initialState,
+  action: MemoAction,
+): MemoState {
   switch (action.type) {
     case FETCH_MEMO_LIST_SUCCESS: {
       return {
