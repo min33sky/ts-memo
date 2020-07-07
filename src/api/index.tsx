@@ -14,14 +14,29 @@ let store: Memo[] = [
   { id: 1, content: '첫번재 메모입니다.', createdAt: Date.now() - 4 },
 ];
 
+const delays = [1000, 1500, 2000];
+
+/**
+ * 랜덤으로 딜레이를 설정해주는 함수
+ */
+function randomDelay() {
+  return delays[Math.floor(Math.random() * delays.length)];
+}
+
 /**
  * 메모 리스트를 가져온다.
   - 삭제된 메모는 제외하고 날짜 순으로 정렬한 데이터를 제공한다.
  */
-export const fetchMemoList = () =>
-  store
-    .filter((memo) => !memo.deleted)
-    .sort((a, b) => b.createdAt! - a.createdAt!);
+export const fetchMemoList = (): Promise<Memo[]> =>
+  new Promise((resolve) => {
+    const memos = store
+      .filter((memo) => !memo.deleted)
+      .sort((a, b) => b.createdAt! - a.createdAt!);
+
+    setTimeout(() => {
+      resolve(memos);
+    }, randomDelay());
+  });
 
 /**
  * 삭제된 메모 리스트를 가져온다.

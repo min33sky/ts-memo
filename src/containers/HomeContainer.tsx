@@ -10,6 +10,7 @@ import { RootState } from '../reducers';
  */
 function HomeContainer() {
   const { memos, deletedMemos } = useSelector((state: RootState) => state.memo);
+  const { apiCalling } = useSelector((state: RootState) => state.app);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,6 +26,7 @@ function HomeContainer() {
     <HomePage
       memoNumber={memos.length}
       deletedMemoNumber={deletedMemos.length}
+      loading={apiCalling}
     />
   );
 }
