@@ -53,16 +53,18 @@ export const fetchDeletedMemoList = () =>
 export const fetchMemo = (memoId: number) => store.find((m) => m.id === memoId);
 
 /**
- * 메모를 추가한다.
+ * 메모를 DB에 추가하고 업데이트 된 메모를 작성자에게 리턴한다.
  * @param memo 메모 내용
  */
-export const addMemo = (memo: Memo) => {
-  const lastMemo = store.sort((a, b) => b.id! - a.id!)[0];
-  memo.id = lastMemo ? lastMemo.id! + 1 : 1;
-  memo.createdAt = Date.now();
-  store = [memo, ...store];
-  return memo;
-};
+export const addMemo = (memo: Memo): Promise<Memo> =>
+  new Promise((resolve) => {
+    const lastMemo = store.sort((a, b) => b.id! - a.id!)[0];
+    memo.id = lastMemo ? lastMemo.id! + 1 : 1;
+    memo.createdAt = Date.now();
+    store = [memo, ...store];
+
+    setTimeout(() => resolve(memo), randomDelay());
+  });
 
 /**
  * 메모를 삭제한다.

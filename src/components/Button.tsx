@@ -6,6 +6,7 @@ interface ButtonProps {
   to?: string;
   primary?: boolean;
   onClick?(): void;
+  disabled?: boolean;
 }
 
 // MixIn
@@ -54,13 +55,13 @@ export const ListItemButton = styled(Link)`
 `;
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { to, children, primary, onClick } = props;
+  const { to, children, primary, onClick, disabled } = props;
   const isLink = !!to;
 
   // 일반 버튼
   const renderButton = () => {
     return (
-      <StyledButton primary={primary} onClick={onClick}>
+      <StyledButton primary={primary} onClick={onClick} disabled={disabled}>
         {children}
       </StyledButton>
     );

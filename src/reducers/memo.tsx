@@ -8,7 +8,9 @@ export const FETCH_MEMO_LIST_FAILURE = 'memo/FETCH_MEMO_LIST_FAILURE' as const;
 export const FETCH_DELETED_MEMO_LIST = 'memo/FETCH_DELETED_MEMO_LIST' as const;
 export const FETCH_MEMO = 'memo/FETCH_MEMO' as const;
 export const FETCH_DELETED_MEMO = 'memo/FETCH_DELETED_MEMO' as const;
-export const ADD_MEMO = 'memo/ADD_MEMO' as const;
+export const ADD_MEMO_REQUEST = 'memo/ADD_MEMO_REQUEST' as const;
+export const ADD_MEMO_SUCCESS = 'memo/ADD_MEMO_SUCCESS' as const;
+export const ADD_MEMO_FAILURE = 'memo/ADD_MEMO_FAILURE' as const;
 export const DELETE_MEMO = 'memo/DELETE_MEMO' as const;
 export const RESTORE_MEMO = 'memo/RESTORE_MEMO' as const;
 
@@ -30,9 +32,8 @@ export const fetchMemoListSuccess = (memos: Memo[]) => ({
   payload: memos,
 });
 
-export const fetchMemoListFailure = (memos: Memo[]) => ({
+export const fetchMemoListFailure = () => ({
   type: FETCH_MEMO_LIST_FAILURE,
-  payload: memos,
 });
 
 export const fetchDeletedMemoList = (memos: Memo[]) => ({
@@ -50,9 +51,31 @@ export const fetchDeletedMemo = (memo: Memo) => ({
   payload: memo,
 });
 
-export const addMemo = (memo: Memo) => ({
-  type: ADD_MEMO,
+/**
+ * 메모 저장 요청 액션 함수
+ * @param memo DB에 저장할 메모
+ */
+export const addMemoRequest = (memo: Memo) => ({
+  type: ADD_MEMO_REQUEST,
   payload: memo,
+});
+
+/**
+ * 스토어에 메모를 저장하라는 액션 함수
+ * @param memo 스토어에 저장할 메모
+ */
+export const addMemoSuccess = (memo: Memo) => ({
+  type: ADD_MEMO_SUCCESS,
+  payload: memo,
+});
+
+/**
+ * DB에 메모 저장 실패 액션 함수
+ * @param message 에러 메세지
+ */
+export const addMemoFailure = (message: string) => ({
+  type: ADD_MEMO_FAILURE,
+  payload: message,
 });
 
 export const deleteMemo = (id: number) => ({
@@ -72,7 +95,8 @@ type MemoAction =
   | ReturnType<typeof fetchDeletedMemoList>
   | ReturnType<typeof fetchMemo>
   | ReturnType<typeof fetchDeletedMemo>
-  | ReturnType<typeof addMemo>
+  | ReturnType<typeof addMemoSuccess>
+  | ReturnType<typeof addMemoFailure>
   | ReturnType<typeof deleteMemo>
   | ReturnType<typeof restoreMemo>;
 
@@ -129,10 +153,17 @@ function memoReducer(
       };
     }
 
-    case ADD_MEMO: {
+    case ADD_MEMO_SUCCESS: {
       return {
         ...state,
         memos: [action.payload, ...state.memos],
+      };
+    }
+
+    case ADD_MEMO_FAILURE: {
+      // TODO: 에러 메세지 처리
+      return {
+        ...state,
       };
     }
 

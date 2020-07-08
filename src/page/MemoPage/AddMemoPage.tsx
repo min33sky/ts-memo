@@ -18,15 +18,16 @@ const Form = styled.form`
   flex-wrap: wrap;
 `;
 
-interface AddMemoProps {
+interface AddMemoPageProps {
   onSubmit(memo: Memo): void;
+  loading: boolean;
 }
 
 /**
- * 새 메모를 작성하는 컴포넌트
+ * 새 메모를 작성하는 페이지
  * @param onSubmit 메모 등록 함수
  */
-function AddMemo({ onSubmit }: AddMemoProps) {
+function AddMemoPage({ onSubmit, loading }: AddMemoPageProps) {
   const [value, setValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -52,10 +53,12 @@ function AddMemo({ onSubmit }: AddMemoProps) {
           value={value}
         />
         <Button to='/memo'>취소</Button>
-        <Button primary>저장</Button>
+        <Button disabled={loading} primary>
+          저장
+        </Button>
       </Form>
     </>
   );
 }
 
-export default AddMemo;
+export default AddMemoPage;
