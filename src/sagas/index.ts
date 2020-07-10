@@ -8,6 +8,7 @@ import {
 } from './../reducers/memo';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { fetchMemoList, addMemo } from '../api';
+import { push } from 'connected-react-router';
 
 function* fetchMemoListData() {
   try {
@@ -36,6 +37,7 @@ function* addMemoSaga(action: ReturnType<typeof addMemoRequest>) {
         // ? 에) url: 어쩌구저쩌구/memo.id
       }),
     );
+    yield put(push(`/memo/${memo.id}`));
   } catch (error) {
     // 에러
   } finally {

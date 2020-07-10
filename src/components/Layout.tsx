@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Dialog from './Dialog';
 
 const LayoutWrapper = styled.div`
   display: flex;
@@ -15,10 +16,17 @@ interface LayoutProps {
 
 /**
  * 전체 레이아웃
+ * TODO: 다이얼로그와 토스트 컴포넌트 넣자
  * @param children 레이아웃을 적용할 컴포넌트
  */
 function Layout({ children }: LayoutProps) {
-  return <LayoutWrapper>{children}</LayoutWrapper>;
+  return (
+    <>
+      {/* Toast */}
+      {/* <Dialog /> */}
+      <LayoutWrapper>{children}</LayoutWrapper>
+    </>
+  );
 }
 
 export default Layout;
