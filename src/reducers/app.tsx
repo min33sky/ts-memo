@@ -1,4 +1,9 @@
-import { FETCH_MEMO_LIST_REQUEST, fetchMemoListRequest } from './memo';
+import {
+  FETCH_MEMO_LIST_REQUEST,
+  fetchMemoListRequest,
+  ADD_MEMO_REQUEST,
+  addMemoRequest,
+} from './memo';
 import { Dialog } from '../model';
 
 /*
@@ -36,6 +41,7 @@ export const cancelDialog = () => ({
  */
 type AppAction =
   | ReturnType<typeof clearApiCallStatus>
+  | ReturnType<typeof addMemoRequest>
   | ReturnType<typeof fetchMemoListRequest>
   | ReturnType<typeof showDialog>
   | ReturnType<typeof confirmDialog>
@@ -64,6 +70,7 @@ function appReducer(
   action: AppAction,
 ): AppState {
   switch (action.type) {
+    case ADD_MEMO_REQUEST:
     case FETCH_MEMO_LIST_REQUEST:
       return {
         ...state,
@@ -80,6 +87,13 @@ function appReducer(
       return {
         ...state,
         dialog: action.payload,
+      };
+
+    case CANCEL_DIALOG:
+    case CONFIRM_DIALOG:
+      return {
+        ...state,
+        dialog: undefined,
       };
 
     default:

@@ -53,9 +53,7 @@ function AddMemoPage({ onSubmit, loading }: AddMemoPageProps) {
           value={value}
         />
         <Button to='/memo'>취소</Button>
-        <Button disabled={loading} primary>
-          저장
-        </Button>
+        <Button disabled={loading}>저장</Button>
       </Form>
     </>
   );

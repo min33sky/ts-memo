@@ -1,4 +1,8 @@
-import { clearApiCallStatus, showDialog } from './../reducers/app';
+import {
+  clearApiCallStatus,
+  showDialog,
+  CONFIRM_DIALOG,
+} from './../reducers/app';
 import {
   addMemoRequest,
   FETCH_MEMO_LIST_REQUEST,
@@ -6,10 +10,13 @@ import {
   ADD_MEMO_REQUEST,
   addMemoSuccess,
 } from './../reducers/memo';
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, take } from 'redux-saga/effects';
 import { fetchMemoList, addMemo } from '../api';
 import { push } from 'connected-react-router';
 
+/**
+ * 메모 리스트를 가져오는 제너레이터
+ */
 function* fetchMemoListData() {
   try {
     const memos = yield call(fetchMemoList);
@@ -22,9 +29,14 @@ function* fetchMemoListData() {
   }
 }
 
+/**
+ * 메모를 추가하는 제너레이터
+ * @param action 메모 추가 요청 액션 타입
+ */
 function* addMemoSaga(action: ReturnType<typeof addMemoRequest>) {
   const { payload } = action;
   if (!payload) return;
+
   try {
     console.log('*** 메모 추가 SAGA ***');
     const memo = yield call(addMemo, payload);
@@ -33,10 +45,13 @@ function* addMemoSaga(action: ReturnType<typeof addMemoRequest>) {
       showDialog({
         type: 'alert',
         text: '메모가 생성되었습니다. 메뉴 수정 화면으로 이동합니다.',
-        // ? 주소를 같이 보내서 다이얼로그 확인 누를 때 라우팅 처리하는게 좋겠다.
-        // ? 에) url: 어쩌구저쩌구/memo.id
       }),
     );
+
+    // 모달 확인 액션을 대기
+    yield take(CONFIRM_DIALOG);
+
+    // 작성한 메모 페이지로 라우팅 (connected-react-router 모듈 사용)
     yield put(push(`/memo/${memo.id}`));
   } catch (error) {
     // 에러

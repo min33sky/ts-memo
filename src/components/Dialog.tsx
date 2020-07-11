@@ -2,6 +2,8 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import * as model from '../model';
 import Button from './Button';
+import { useDispatch } from 'react-redux';
+import { cancelDialog, confirmDialog } from '../reducers/app';
 
 const BackDrop = styled.div`
   position: fixed;
@@ -36,18 +38,29 @@ export interface DialogProps {
  * @param param0
  */
 function Dialog({ dialog }: DialogProps) {
-  const onClick = useCallback(() => {
-    alert('구현중');
-  }, []);
+  const dispatch = useDispatch();
+
+  const onConfirm = useCallback(() => {
+    dispatch(confirmDialog());
+  }, [dispatch]);
+
+  const onCancel = useCallback(() => {
+    dispatch(cancelDialog());
+  }, [dispatch]);
+
+  // 다이얼로그가 없으면 보여주지 않는다.
+  if (!dialog) return null;
 
   return (
     <>
-      <BackDrop onClick={onClick} />
+      <BackDrop onClick={onConfirm} />
       <Modal>
         <div>모달 내용: {dialog?.text}</div>
         <div>
-          <Button onClick={onClick}>확인</Button>
-          <Button onClick={onClick}>취소</Button>
+          {dialog.type === 'confirm' && (
+            <Button onClick={onCancel}>취소</Button>
+          )}
+          <Button onClick={onConfirm}>확인</Button>
         </div>
       </Modal>
     </>
