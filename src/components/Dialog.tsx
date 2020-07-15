@@ -20,17 +20,26 @@ const Modal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
-  height: 100px;
+  height: 130px;
   background-color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 `;
 
+const ModalContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+`;
+
+const ModalButtonWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+`;
+
 export interface DialogProps {
   dialog?: model.Dialog;
-  /**
-   * cancelDialog, confirmDialog
-   */
 }
 
 /**
@@ -55,13 +64,15 @@ function Dialog({ dialog }: DialogProps) {
     <>
       <BackDrop onClick={onConfirm} />
       <Modal>
-        <div>모달 내용: {dialog?.text}</div>
-        <div>
+        <ModalContent>
+          <div>{dialog?.text}</div>
+        </ModalContent>
+        <ModalButtonWrapper>
           {dialog.type === 'confirm' && (
             <Button onClick={onCancel}>취소</Button>
           )}
           <Button onClick={onConfirm}>확인</Button>
-        </div>
+        </ModalButtonWrapper>
       </Modal>
     </>
   );
