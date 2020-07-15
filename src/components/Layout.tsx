@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import DialogContainer from '../containers/DialogContainer';
+import ToastListContainer from '../containers/ToastListContainer';
 
 const LayoutWrapper = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ interface LayoutProps {
 function Layout({ children }: LayoutProps) {
   return (
     <>
-      {/* Toast */}
+      <ToastListContainer />
       <DialogContainer />
       <LayoutWrapper>{children}</LayoutWrapper>
     </>
