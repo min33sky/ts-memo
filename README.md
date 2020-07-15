@@ -9,6 +9,7 @@
 - react
 - typescript
 - react-router
+- connected-react-router
 - styled-components
 
 ## 에러 해결

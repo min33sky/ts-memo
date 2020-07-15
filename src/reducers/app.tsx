@@ -4,7 +4,7 @@ import {
   ADD_MEMO_REQUEST,
   addMemoRequest,
 } from './memo';
-import { Dialog } from '../model';
+import { Dialog, Toast } from '../model';
 
 /*
  * ACTION TYPE
@@ -15,6 +15,8 @@ export const CLEAR_API_CALL_STATUS = 'CLEAR_API_CALL_STATUS' as const;
 export const SHOW_DIALOG = 'SHOW_DIALOG' as const;
 export const CONFIRM_DIALOG = 'CONFIRM_DIALOG' as const;
 export const CANCEL_DIALOG = 'CANCEL_DIALOG' as const;
+
+// 토스트 관련
 
 /*
  * ACTION CREATOR
@@ -53,11 +55,13 @@ type AppAction =
 export interface AppState {
   apiCalling: boolean; // API 호출 요청
   dialog?: Dialog;
+  toasts?: Toast[];
 }
 
 const initialState: AppState = {
   apiCalling: false,
   dialog: undefined,
+  toasts: [],
 };
 
 /**
