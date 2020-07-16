@@ -11,15 +11,9 @@ function MemoListContainer() {
   const { memos } = useSelector((state: RootState) => state.memo);
   const dispatch = useDispatch();
 
-  /**
-   * TODO: 스토어에 메모 리스트 업데이트
-   */
-
   useEffect(() => {
     dispatch(fetchMemoListRequest());
   }, [dispatch]);
-
-  console.log('********* 실행 **********', memos);
 
   return <MemoListPage memos={memos} />;
 }
