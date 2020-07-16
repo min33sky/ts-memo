@@ -35,7 +35,8 @@ const ModalContent = styled.div`
 
 const ModalButtonWrapper = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 export interface DialogProps {
