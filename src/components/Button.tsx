@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
@@ -7,6 +7,7 @@ interface ButtonProps {
   primary?: boolean;
   onClick?(): void;
   disabled?: boolean;
+  children: React.ReactNode;
 }
 
 // MixIn
@@ -54,8 +55,7 @@ export const ListItemButton = styled(Link)`
   height: 100%;
 `;
 
-const Button: React.FC<ButtonProps> = (props) => {
-  const { to, children, primary, onClick, disabled } = props;
+export default function Button({ to, primary, onClick, disabled, children }: ButtonProps) {
   const isLink = !!to;
 
   // 일반 버튼
@@ -83,6 +83,4 @@ const Button: React.FC<ButtonProps> = (props) => {
   };
 
   return isLink ? renderLink() : renderButton();
-};
-
-export default Button;
+}

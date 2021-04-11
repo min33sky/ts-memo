@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 import { Memo } from '../model';
 import { addMemoRequest } from '../reducers/memo';
-import { RootState } from '../reducers';
 import AddMemoPage from '../page/MemoPage/AddMemoPage';
 
 /**
@@ -11,7 +10,7 @@ import AddMemoPage from '../page/MemoPage/AddMemoPage';
  */
 function AddMemoContainer() {
   // const newMemoId = useRef<number>(0); // 리다이렉트 하기 위한 변수
-  const { apiCalling } = useSelector((state: RootState) => state.app);
+  const { apiCalling } = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(
@@ -21,7 +20,7 @@ function AddMemoContainer() {
       // newMemoId.current = newMemo.id!;
       dispatch(addMemoRequest(memo));
     },
-    [dispatch],
+    [dispatch]
   );
 
   // if (newMemoId.current > 0) {

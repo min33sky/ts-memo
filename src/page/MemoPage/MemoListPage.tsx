@@ -1,15 +1,15 @@
 import React from 'react';
 import { Memo } from '../../model';
-import Layout from '../../components/Layout';
-import Sidebar, {
-  SidebarBackButton,
-  SidebarTitle,
-} from '../../components/Sidebar';
+import Sidebar from '../../components/Sidebar';
 import Main from '../../components/Main';
 import MemoRouter from '../../routes/Memo';
-import { List, ListItem } from '../../components/List';
 import { ListItemButton } from '../../components/Button';
 import { useLocation } from 'react-router-dom';
+import AppLayout from 'components/AppLayout';
+import { SidebarBackButton } from 'components/Sidebar/SidebarBackButton';
+import SidebarTitle from 'components/Sidebar/SidebarTitle';
+import MenuList from 'components/MenuList';
+import MenuItem from 'components/MenuList/MenuItem';
 
 interface MemoListPageProps {
   memos: Memo[];
@@ -22,16 +22,16 @@ interface MemoListPageProps {
  */
 function MemoListPage({ memos }: MemoListPageProps) {
   return (
-    <Layout>
+    <AppLayout>
       <Sidebar>
-        <SidebarBackButton to='/' />
+        <SidebarBackButton to="/" />
         <SidebarTitle>메모</SidebarTitle>
         {memos.length > 0 && <MemoList memos={memos} />}
       </Sidebar>
       <Main>
         <MemoRouter />
       </Main>
-    </Layout>
+    </AppLayout>
   );
 }
 
@@ -46,19 +46,13 @@ function MemoList({ memos }: MemoListPageProps) {
   const currentPageNo = Number(location.pathname.split('/').reverse()[0]);
 
   return (
-    <List>
+    <MenuList>
       {memos.map((memo, idx) => (
-        <ListItem
-          key={idx}
-          first={idx === 0}
-          active={memo.id === currentPageNo}
-        >
-          <ListItemButton to={`/memo/${memo.id}`}>
-            {memoTitle(memo.content)}
-          </ListItemButton>
-        </ListItem>
+        <MenuItem key={idx} first={idx === 0} active={memo.id === currentPageNo}>
+          <ListItemButton to={`/memo/${memo.id}`}>{memoTitle(memo.content)}</ListItemButton>
+        </MenuItem>
       ))}
-    </List>
+    </MenuList>
   );
 }
 

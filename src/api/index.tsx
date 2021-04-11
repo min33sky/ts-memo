@@ -25,13 +25,11 @@ function randomDelay() {
 
 /**
  * 메모 리스트를 가져온다.
-  - 삭제된 메모는 제외하고 날짜 순으로 정렬한 데이터를 제공한다.
+  - 삭제된 메모는 제외하고 날짜 순(내림차 순)으로 정렬한 데이터를 제공한다.
  */
 export const fetchMemoList = (): Promise<Memo[]> =>
   new Promise((resolve) => {
-    const memos = store
-      .filter((memo) => !memo.deleted)
-      .sort((a, b) => b.createdAt! - a.createdAt!);
+    const memos = store.filter((memo) => !memo.deleted).sort((a, b) => b.createdAt! - a.createdAt!);
 
     setTimeout(() => {
       resolve(memos);
@@ -42,9 +40,7 @@ export const fetchMemoList = (): Promise<Memo[]> =>
  * 삭제된 메모 리스트를 가져온다.
  */
 export const fetchDeletedMemoList = () =>
-  store
-    .filter((memo) => !!memo.deleted)
-    .sort((a, b) => b.createdAt! - a.createdAt!);
+  store.filter((memo) => !!memo.deleted).sort((a, b) => b.createdAt! - a.createdAt!);
 
 /**
  * 메모를 가져온다

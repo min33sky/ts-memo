@@ -5,22 +5,17 @@ import ToastListContainer from '../containers/ToastListContainer';
 
 const LayoutWrapper = styled.div`
   display: flex;
-  flex: 1;
-  width: auto;
-  min-height: 700px;
-  margin: 20px 40px;
+  width: 80%;
+  min-height: 800px;
+  max-height: 800px;
 `;
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
 /**
- * 전체 레이아웃
+ * 앱 레이아웃
  * TODO: 다이얼로그와 토스트 컴포넌트 넣자
  * @param children 레이아웃을 적용할 컴포넌트
  */
-function Layout({ children }: LayoutProps) {
+export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ToastListContainer />
@@ -29,5 +24,3 @@ function Layout({ children }: LayoutProps) {
     </>
   );
 }
-
-export default Layout;

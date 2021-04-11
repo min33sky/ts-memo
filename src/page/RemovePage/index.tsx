@@ -1,15 +1,15 @@
 import React from 'react';
-import Layout from '../../components/Layout';
-import Sidebar, {
-  SidebarBackButton,
-  SidebarTitle,
-} from '../../components/Sidebar';
-import Main from '../../components/Main';
-import { Memo } from '../../model';
-import { List, ListItem } from '../../components/List';
-import TrashRouter from '../../routes/Remove';
-import { ListItemButton } from '../../components/Button';
+import Sidebar from 'components/Sidebar';
+import Main from 'components/Main';
+import { Memo } from 'model';
+import TrashRouter from 'routes/Remove';
+import { ListItemButton } from 'components/Button';
 import { useLocation } from 'react-router-dom';
+import AppLayout from 'components/AppLayout';
+import { SidebarBackButton } from 'components/Sidebar/SidebarBackButton';
+import SidebarTitle from 'components/Sidebar/SidebarTitle';
+import MenuList from 'components/MenuList';
+import MenuItem from 'components/MenuList/MenuItem';
 
 interface RemovePageProps {
   memos: Memo[];
@@ -31,32 +31,27 @@ function RemovePage({ memos }: RemovePageProps) {
   const currentPageNo = Number(location.pathname.split('/').reverse()[0]);
 
   const renderMemoList = (memos: Memo[]) => (
-    <List>
+    <MenuList>
       {memos.map((memo, idx) => (
-        <ListItem
-          key={idx}
-          first={idx === 0}
-          active={memo.id === currentPageNo}
-        >
-          <ListItemButton to={`/remove/${memo.id}`}>
-            {memoTitle(memo.content)}
-          </ListItemButton>
-        </ListItem>
+        <MenuItem key={idx} first={idx === 0} active={memo.id === currentPageNo}>
+          <ListItemButton to={`/remove/${memo.id}`}>{memoTitle(memo.content)}</ListItemButton>
+        </MenuItem>
       ))}
-    </List>
+    </MenuList>
   );
 
   return (
-    <Layout>
+    <AppLayout>
       <Sidebar>
-        <SidebarBackButton to='/' />
+        <SidebarBackButton to="/" />
         <SidebarTitle>휴지통</SidebarTitle>
         {memos && renderMemoList(memos)}
       </Sidebar>
+
       <Main>
         <TrashRouter />
       </Main>
-    </Layout>
+    </AppLayout>
   );
 }
 

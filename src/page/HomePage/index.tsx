@@ -1,15 +1,12 @@
 import React from 'react';
-import Layout from '../../components/Layout';
-import Sidebar, { SidebarTitle } from '../../components/Sidebar';
-import { List, ListItem } from '../../components/List';
+import Sidebar from '../../components/Sidebar';
 import Main from '../../components/Main';
-import styled from 'styled-components';
 import { ListItemButton } from '../../components/Button';
-import Skeleton from '../../components/Skeleton';
-
-export const Div = styled.div`
-  margin: 10px;
-`;
+import Skeleton from 'components/Skeleton';
+import AppLayout from 'components/AppLayout';
+import SidebarTitle from 'components/Sidebar/SidebarTitle';
+import MenuList from 'components/MenuList';
+import MenuItem from 'components/MenuList/MenuItem';
 
 interface HomePageProps {
   memoNumber: number;
@@ -23,34 +20,35 @@ interface HomePageProps {
  * @param deletedMemoNumber 삭제된 메모 수
  * @param loading 데이터가 로딩중인지 알려준다.
  */
-function HomePage({ memoNumber, deletedMemoNumber, loading }: HomePageProps) {
+export default function HomePage({ memoNumber, deletedMemoNumber, loading }: HomePageProps) {
   /*
     저장된 메모 수와 삭제된 메모 수를 화면에 보여준다.
    */
   return (
-    <Layout>
+    <AppLayout>
       <Sidebar>
         <SidebarTitle>메뉴</SidebarTitle>
-        {loading ? (
-          <List>
+        {loading && (
+          <MenuList>
             <Skeleton />
-          </List>
-        ) : (
-          <List>
-            <ListItem first>
-              <ListItemButton to='/memo'>메모({memoNumber})</ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton to='/remove'>
-                휴지통({deletedMemoNumber})
-              </ListItemButton>
-            </ListItem>
-          </List>
+          </MenuList>
+        )}
+
+        {!loading && (
+          <MenuList>
+            <MenuItem first>
+              <ListItemButton to="/memo">메모({memoNumber})</ListItemButton>
+            </MenuItem>
+            <MenuItem>
+              <ListItemButton to="/remove">휴지통({deletedMemoNumber})</ListItemButton>
+            </MenuItem>
+          </MenuList>
         )}
       </Sidebar>
-      <Main>Hi?</Main>
-    </Layout>
+
+      <Main>
+        <h1>Hello, Typescript Memopad</h1>
+      </Main>
+    </AppLayout>
   );
 }
-
-export default HomePage;

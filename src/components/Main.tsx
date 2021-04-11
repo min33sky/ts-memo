@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MainLayout = styled.main`
-  flex: 1 1 auto;
+  /* flex: 1 1 auto; */
+  width: 100%;
   overflow: auto;
   border: 1px solid #ccc;
   padding: 10px;

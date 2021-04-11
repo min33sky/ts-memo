@@ -3,14 +3,13 @@ import * as api from '../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeletedMemoList, fetchMemoListRequest } from '../reducers/memo';
 import HomePage from '../page/HomePage';
-import { RootState } from '../reducers';
 
 /**
  * 홈 컨테이너
  */
 function HomeContainer() {
-  const { memos, deletedMemos } = useSelector((state: RootState) => state.memo);
-  const { apiCalling } = useSelector((state: RootState) => state.app);
+  const { memos, deletedMemos } = useSelector((state) => state.memo);
+  const { apiCalling } = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
   useEffect(() => {

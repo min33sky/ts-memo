@@ -21,7 +21,7 @@ interface ToastListProps {
 function ToastList({ toasts }: ToastListProps) {
   return (
     <ToastListWrapper>
-      {toasts.map((toast) => (
+      {toasts.map(toast => (
         <ToastItem toast={toast} key={toast.id} />
       ))}
     </ToastListWrapper>
